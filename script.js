@@ -3,15 +3,6 @@ const pinValido = '1234';
 const pinBloqueado = '9999';
 let programaActivo = true;
 
-//Menu principal
-function mostrarMenuPrincipal(){
-    console.log("\n BANCA AMIGA - CAJERO AUTOMATICO");
-    console.log("1. Consignar Dinero");
-    console.log("2. Retirar Dinero");
-    console.log("3. Consultar Saldo");
-    console.log("4. Validacion de PIN");
-    console.log("Salir");
-}
 
 //Consignar dinero
 function consignarDinero(){
@@ -53,3 +44,49 @@ function consultarSaldo(){
 }
 
 //Validacion de seguridad
+function validarPin(){
+    const pinIngresado = prompt("Ingrese su PIN de seguridad: ");
+
+    if (pinIngresado === pinValido){
+        console.log("Acceso de seguridad aprobado");
+    }
+    else if (pinIngresado === pinBloqueado){
+        console.log("PIN bloqueado. Contacte a a la entidad");
+    }
+    else {
+        console.log("PIN incorrecto");
+    }
+}
+
+//Salir del programa
+function salirPrograma(){
+    console.log("Gracias por usar Banca Amiga. ¡Hasta pronto!");
+    programaActivo = false;
+}
+
+//Ejecutar programa
+function ejecutarCajeroAutomatico(){
+    console.log("Iniciando cajero automatico Banca Amiga...")
+    console.log("Saldo inicial: $" + saldoCliente);
+
+    while (programaActivo){
+        const opcionSeleccionada = prompt("Seleccione una opcion (1-5)\n1. Consignar dinero\n2. Retirar dinero\n3. Consultar saldo\n4. Validacion de seguridad\n5. Salir");
+
+        if (opcionSeleccionada === '1') {
+            consignarDinero();
+        } else if (opcionSeleccionada === '2') {
+            retirarDinero();
+        } else if (opcionSeleccionada === '3') {
+            consultarSaldo();
+        } else if (opcionSeleccionada === '4') {
+            validarPin();
+        } else if (opcionSeleccionada === '5') {
+            salirPrograma();
+        } else {
+            console.log(" Opción no válida. Por favor, seleccione una opción del 1 al 5.");
+    }
+}
+}
+
+//Iniciar programa
+ejecutarCajeroAutomatico();
